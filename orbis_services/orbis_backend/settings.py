@@ -77,8 +77,16 @@ WSGI_APPLICATION = 'orbis_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        "ENGINE": "mssql",
+        "NAME": "orbis_services",
+        "USER": "",
+        "PASSWORD": "",
+        "HOST": "YISHAK\ASSET",
+        "PORT": "",
+        "OPTIONS": {
+            "driver": "ODBC Driver 17 for SQL Server",
+            "isolation_level":"READ UNCOMMITTED"
+        },
     }
 }
 
