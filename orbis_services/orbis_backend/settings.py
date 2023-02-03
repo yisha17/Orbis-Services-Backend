@@ -84,7 +84,7 @@ DATABASES = {
         "HOST": "YISHAK\ASSET",
         "PORT": "",
         "OPTIONS": {
-            "driver": "ODBC Driver 17 for SQL Server",
+            "driver": 'SQL Server Native Client 11.0',
             "isolation_level":"READ UNCOMMITTED"
         },
     }
