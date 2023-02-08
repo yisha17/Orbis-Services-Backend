@@ -30,3 +30,9 @@ user_signup_view = RegisterView.as_view()
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 custom_token_obtain = MyTokenObtainPairView.as_view()
+
+
+class UserDetailView(generics.RetrieveAPIView):
+    
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer

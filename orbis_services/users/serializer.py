@@ -10,14 +10,14 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         data['refresh'] = str(refresh)
         data['access'] = str(refresh.access_token)
 
-        # data['role'] = self.user.role
+        data['first_name'] = self.user.first_name
         # data['address'] = self.user.address
         return data
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username','email', 'password','phone']
+        fields = ['id', 'first_name','last_name','email', 'password','phone']
         extra_kwargs = {
             'password': {'write_only': True},
         }
@@ -28,3 +28,18 @@ class RegisterSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance 
+
+class UserSerializer(serializers.ModelSerializer):
+    profile = serializers.ImageField(
+        max_length=None, use_url=True
+    )
+    class Meta:
+        model = CustomUser
+        extra_kwargs = {'password': {'write_only': True}}
+        fields = '__all__'
+        print("working here")
+
+    def get_photo_url(self, obj):
+        request = self.context.get('request')
+        photo_url = obj.fingerprint.url
+        return request.build_absolute_uri(photo_url)        

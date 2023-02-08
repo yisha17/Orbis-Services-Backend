@@ -80,18 +80,25 @@ WSGI_APPLICATION = 'orbis_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         "ENGINE": "mssql",
+#         "NAME": "orbis_services",
+#         "USER": "",
+#         "PASSWORD": "",
+#         "HOST": "YISHAK\ASSET",
+#         "PORT": "",
+#         "OPTIONS": {
+#             "driver": 'SQL Server Native Client 11.0',
+#             "isolation_level":"READ UNCOMMITTED"
+#         },
+#     }
+# }
+
 DATABASES = {
     'default': {
-        "ENGINE": "mssql",
-        "NAME": "orbis_services",
-        "USER": "",
-        "PASSWORD": "",
-        "HOST": "YISHAK\ASSET",
-        "PORT": "",
-        "OPTIONS": {
-            "driver": 'SQL Server Native Client 11.0',
-            "isolation_level":"READ UNCOMMITTED"
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -130,6 +137,7 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ACCESS_TOKEN_LIFETIME': timedelta(days=5),
 }
+CSRF_COOKIE_SECURE = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
