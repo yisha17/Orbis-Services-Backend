@@ -8,4 +8,5 @@ urlpatterns = [
     path('signup/', user_signup_view),
     path('auth/', custom_token_obtain),
     path('auth/refresh', jwt_views.token_refresh), 
+    path('<int:id>/',user_detail_view),
 ]
