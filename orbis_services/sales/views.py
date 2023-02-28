@@ -36,3 +36,10 @@ class UserReviewList(generics.ListAPIView):
     serializer_class = UserReviewSerializer
     lookup_field = 'car'
 user_review_list = UserReviewList.as_view()
+
+
+class FullDetailAboutSalesCar(generics.RetrieveAPIView):
+    queryset = CarImages.objects.all()
+    serializer_class = ImageSerializer
+    lookup_field = 'pk'
+car_detail = FullDetailAboutSalesCar.as_view()

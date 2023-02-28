@@ -18,4 +18,5 @@ class CarsSerializer(serializers.ModelSerializer):
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarImages
-        fields = '__all__'        
+        fields = ['cars','image']
+        depth= 1        
