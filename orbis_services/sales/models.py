@@ -83,14 +83,14 @@ class UserReview(models.Model):
     likes = models.IntegerField(default=0)
 
 
-def upload_to(filename):
+def upload_to(instance,filename):
     return 'carimages/{filename}'.format(filename=filename)
 
 class CarImages(models.Model):
     cars = models.ForeignKey(Cars,on_delete=models.CASCADE)
     image = models.ImageField(upload_to=upload_to,null=True,blank=True)
 
-def upload_to_panaroma(filename):
+def upload_to_panaroma(instance,filename):
     return 'panaroma/{filename}'.format(filename=filename)
 
 class PanaromicCarImages(models.Model):
