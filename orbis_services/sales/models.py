@@ -68,10 +68,10 @@ class Cars(models.Model):
     height = models.IntegerField(null=True)
     wheel_base = models.IntegerField(null=True)
     ground_clearance = models.IntegerField(null=True)
-
     # --------------interested users-------------
-    interested_users = models.ManyToOneRel(CustomUser,on_delete=models.RESTRICT,null = True)
     quantity = models.IntegerField(default=0)
+    created_date = models.DateTimeField(auto_now_add=True)
+
     
     
 class UserReview(models.model):
@@ -82,59 +82,9 @@ class UserReview(models.model):
     likes = models.IntegerField(default=0)
 
 
-# class Engine(models.model):
+def upload_to(instance, filename):
+    return 'images/{filename}'.format(filename=filename)
+class CarImages(models.Model):
+    note = models.ForeignKey(Cars,on_delete=models.CASCADE)
+    image = models.ImageField(upload_to=upload_to,null=True,blank=True)
 
-#     FUEL = [
-#         ('Petrol','Petrol'),
-#         ('Diesel','Diesel')
-#     ]
-#     car = models.OneToOneField(Cars,on_delete= models.CASCADE,primary_key=True)
-#     fuel_type = models.CharField(max_length= 120, choices= FUEL)
-#     car_engine = models.CharField(max_length=120)
-#     horse_power = models.IntegerField(max=6000)
-#     emission_standard = models.CharField(max_length=100)
-
-
-# class Transmission(models.model):
-#     TRANSMISSION = [
-#         ('Manual','Manual'),
-#         ('Automatic','Automatic')
-#     ]
-#     car = models.OneToOneField(Cars,on_delete= models.CASCADE,primary_key=True)
-#     gearbox_type =models.CharField(max_length= 120, choices= TRANSMISSION)
-#     number_of_gears = models.IntegerField()
-#     transmission = models.CharField(max_length=10)
-
-# class AxleAssemblies(models.Model):
-#     car = models.OneToOneField(Cars,on_delete= models.CASCADE,primary_key=True)
-#     anti_lock_braking_system = models.BooleanField(default= False)
-#     servo_brakes = models.CharField(max_length=100)
-#     wheel_rim_type = models.CharField(max_length=100)
-#     spare_wheel = models.BooleanField(default= False)
-
-# class Upholesty(models.model):
-#     car = models.OneToOneField(Cars,on_delete= models.CASCADE,primary_key=True)
-#     seats_upholesty = models.CharField(max_length=100)
-#     seat_trim = models.CharField(max_length=100)
-
-
-# class AirCondtioning(models.model):
-#     car = models.OneToOneField(Cars,on_delete= models.CASCADE,primary_key=True)
-#     air_constioning_type = models.CharField(max_length=100)
-
-# class Safety(models.model):
-#     car = models.OneToOneField(Cars,on_delete= models.CASCADE,primary_key=True)
-#     safety_belts = models.CharField(max_length=100)
-#     protection_element = models.CharField(max_length=100)
-
-# class Alarm(models.model):
-#     car = models.OneToOneField(Cars,on_delete= models.CASCADE,primary_key=True)
-#     safety_belts = models.CharField(max_length=100)
-
-# class Dimensions(models.model):
-#     car = models.OneToOneField(Cars,on_delete= models.CASCADE,primary_key=True)
-#     length = models.IntegerField()
-#     width = models.IntegerField()
-#     height = models.IntegerField()
-#     wheel_base = models.IntegerField()
-#     ground_clearance = models.IntegerField()
