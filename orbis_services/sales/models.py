@@ -4,6 +4,7 @@ from users.models import CustomUser
 
 
 class Cars(models.Model):
+
     CAR_CHOICES = [
         ('Mercedes', 'Mercedes'),
         ('Renault', 'Renault'),
@@ -72,6 +73,13 @@ class Cars(models.Model):
     interested_users = models.ManyToOneRel(CustomUser,on_delete=models.RESTRICT,null = True)
     quantity = models.IntegerField(default=0)
     
+    
+class UserReview(models.model):
+    review_title = models.CharField(max_length=120)
+    review_description = models.CharField(max_length=500)
+    reviewer = models.ForeignKey(CustomUser,primary_key=True,on_delete=models.CASCADE)
+    views = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0)
 
 
 # class Engine(models.model):
