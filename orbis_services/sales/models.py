@@ -75,16 +75,25 @@ class Cars(models.Model):
     
     
 class UserReview(models.model):
-    review_title = models.CharField(max_length=120)
-    review_description = models.CharField(max_length=500)
-    reviewer = models.ForeignKey(CustomUser,primary_key=True,on_delete=models.CASCADE)
+    car = models.ForeignKey(Cars,on_delete=models.CASCADE)
+    review_title = models.CharField(max_length=120,null=False)
+    review_description = models.CharField(max_length=500,null=False)
+    reviewer = models.OneToOneField(CustomUser,primary_key=True,on_delete=models.CASCADE)
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
 
 
-def upload_to(instance, filename):
-    return 'images/{filename}'.format(filename=filename)
+def upload_to(filename):
+    return 'carimages/{filename}'.format(filename=filename)
+
 class CarImages(models.Model):
-    note = models.ForeignKey(Cars,on_delete=models.CASCADE)
+    cars = models.ForeignKey(Cars,on_delete=models.CASCADE)
     image = models.ImageField(upload_to=upload_to,null=True,blank=True)
 
+def upload_to_panaroma(filename):
+    return 'panaroma/{filename}'.format(filename=filename)
+
+class PanaromicCarImages(models.model):
+    cars = models.ForeignKey(Cars,on_delete=models.CASCADE)
+    image = models.ImageField(upload_to=upload_to_panaroma,null=True,blank=True)
+    is_exterior = models.BooleanField(null=True)
