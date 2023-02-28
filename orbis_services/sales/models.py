@@ -71,10 +71,10 @@ class Cars(models.Model):
     # --------------interested users-------------
     quantity = models.IntegerField(default=0)
     created_date = models.DateTimeField(auto_now_add=True)
-
     
     
-class UserReview(models.model):
+    
+class UserReview(models.Model):
     car = models.ForeignKey(Cars,on_delete=models.CASCADE)
     review_title = models.CharField(max_length=120,null=False)
     review_description = models.CharField(max_length=500,null=False)
@@ -93,7 +93,7 @@ class CarImages(models.Model):
 def upload_to_panaroma(filename):
     return 'panaroma/{filename}'.format(filename=filename)
 
-class PanaromicCarImages(models.model):
+class PanaromicCarImages(models.Model):
     cars = models.ForeignKey(Cars,on_delete=models.CASCADE)
     image = models.ImageField(upload_to=upload_to_panaroma,null=True,blank=True)
     is_exterior = models.BooleanField(null=True)
