@@ -19,6 +19,8 @@ def get_sales_vehicle_info(request,pk):
         print(serializer.data)
         return Response(serializer.data,status=status.HTTP_200_OK)
 
+    
+
 @api_view(['GET',])
 def get_user_review(request,car):
     try:
@@ -28,9 +30,8 @@ def get_user_review(request,car):
     if request.method == 'GET':
         serializer =  UserReviewSerializer(review)
         print(serializer.data)
-        return Response(serializer.data,status=status.HTTP_200_OK)    
-
-
+        return Response(serializer.data,status=status.HTTP_200_OK)  
+      
 class UserReviewList(generics.ListAPIView):
     queryset = UserReview.objects.all()
     serializer_class = UserReviewSerializer
@@ -38,8 +39,10 @@ class UserReviewList(generics.ListAPIView):
 user_review_list = UserReviewList.as_view()
 
 
-class FullDetailAboutSalesCar(generics.RetrieveAPIView):
-    queryset = CarImages.objects.all()
-    serializer_class = ImageSerializer
+class FullDetailAboutSalesCar(generics.ListAPIView):
+    queryset = Cars.objects.all()
+    serializer_class = AllCarDetailSerializer
     lookup_field = 'pk'
+    
+    
 car_detail = FullDetailAboutSalesCar.as_view()
