@@ -41,7 +41,7 @@ user_review_list = UserReviewList.as_view()
 
 class FullDetailAboutSalesCar(generics.ListAPIView):
     queryset = Cars.objects.all()
-    serializer_class = AllCarDetailSerializer
+    serializer_class = SalesVehicleSerializer
     lookup_field = 'pk'
     
     

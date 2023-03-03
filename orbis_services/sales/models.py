@@ -87,7 +87,7 @@ def upload_to(instance,filename):
     return 'carimages/{filename}'.format(filename=filename)
 
 class CarImages(models.Model):
-    cars = models.ForeignKey(Cars,on_delete=models.CASCADE)
+    cars = models.ForeignKey(Cars,on_delete=models.CASCADE, default=None,related_name="car_images")
     image = models.ImageField(upload_to=upload_to,null=True,blank=True)
 
 def upload_to_panaroma(instance,filename):

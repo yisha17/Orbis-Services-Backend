@@ -9,12 +9,12 @@ class UserReviewSerializer(serializers.ModelSerializer):
 
 
 class CarImageSerializer(serializers.ModelSerializer):
-    car_image = serializers.ImageField(
-        max_length=None, use_url=True
-    )
+    # car_image = serializers.ImageField(
+    #     max_length=None, use_url=True
+    # )
     class Meta:
         model = CarImages
-        fields = ['car_image']
+        fields = ('image',)
         
     def get_photo_url(self, car):
         request = self.context.get('request')
@@ -47,3 +47,11 @@ class CarsSerializer(serializers.ModelSerializer):
         for uploaded_item in uploaded_data:
             new_car_image = CarImageSerializer.objects.create(product = new_car, images = uploaded_item)
         return new_car
+    
+class SalesVehicleSerializer(serializers.ModelSerializer):
+    images = serializers.SerializerMethodField()
+    def get_images(self, car):
+       return CarImageSerializer(car.car_images.all(), many=True).data
+    class Meta:
+        model= Cars
+        fields = ('id','car_brand','images',)
