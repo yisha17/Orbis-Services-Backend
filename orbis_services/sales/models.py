@@ -42,7 +42,7 @@ class Cars(models.Model):
     payload = models.IntegerField(null=True)
     # --------------engine-------------
     fuel_type = models.CharField(max_length=120, choices=FUEL)
-    car_engine = models.CharField(max_length=120, null=True)
+    car_engine = models.IntegerField(null=True)
     horse_power = models.IntegerField()
     emission_standard = models.CharField(max_length=100)
     # --------------transmission-------------

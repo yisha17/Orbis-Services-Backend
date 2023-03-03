@@ -9,9 +9,7 @@ class UserReviewSerializer(serializers.ModelSerializer):
 
 
 class CarImageSerializer(serializers.ModelSerializer):
-    # car_image = serializers.ImageField(
-    #     max_length=None, use_url=True
-    # )
+   
     class Meta:
         model = CarImages
         fields = ('image',)
@@ -54,4 +52,4 @@ class SalesVehicleSerializer(serializers.ModelSerializer):
        return CarImageSerializer(car.car_images.all(), many=True).data
     class Meta:
         model= Cars
-        fields = ('id','car_brand','images',)
+        fields = '__all__'
