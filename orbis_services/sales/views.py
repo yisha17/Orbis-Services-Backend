@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import generics, permissions, authentication
+from rest_framework.permissions import AllowAny,IsAdminUser,IsAuthenticated
 from .models import *
 from .serializer import *
 # Create your views here.
@@ -42,7 +43,9 @@ user_review_list = UserReviewList.as_view()
 class FullDetailAboutSalesCar(generics.ListAPIView):
     queryset = Cars.objects.all()
     serializer_class = SalesVehicleSerializer
+    permission_classes = [AllowAny,]
     lookup_field = 'pk'
     
     
 car_detail = FullDetailAboutSalesCar.as_view()
+

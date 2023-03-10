@@ -37,12 +37,13 @@ class Cars(models.Model):
     car_model = models.CharField(max_length=120)
     car_brand = models.CharField(max_length=120, choices=CAR_CHOICES)
     car_type = models.CharField(max_length=80, choices=CAR_TYPES)
+    year = models.CharField(max_length=100)
     seating_capacity = models.CharField(max_length=200)
     number_of_door = models.IntegerField(null=True)
     payload = models.IntegerField(null=True)
     # --------------engine-------------
     fuel_type = models.CharField(max_length=120, choices=FUEL)
-    car_engine = models.IntegerField(null=True)
+    displacement = models.IntegerField(null=True)
     horse_power = models.IntegerField()
     emission_standard = models.CharField(max_length=100)
     # --------------transmission-------------
@@ -54,7 +55,7 @@ class Cars(models.Model):
     anti_lock_braking_system = models.BooleanField(default=False)
     servo_brakes = models.CharField(max_length=100, null=True)
     wheel_rim_type = models.CharField(max_length=100, null=True)
-    spare_wheel = models.BooleanField(default=False, null=True)
+    spare_wheel = models.CharField(max_length= 200, null=True)
     # --------------air condtioning/ heating-------------
     air_constioning_type = models.CharField(max_length=100, null=True)
     # --------------safety-------------
