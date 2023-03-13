@@ -40,7 +40,7 @@ class UserReviewList(generics.ListAPIView):
 user_review_list = UserReviewList.as_view()
 
 
-class FullDetailAboutSalesCar(generics.ListAPIView):
+class FullDetailAboutSalesCar(generics.RetrieveAPIView):
     queryset = Cars.objects.all()
     serializer_class = SalesVehicleSerializer
     permission_classes = [AllowAny,]
