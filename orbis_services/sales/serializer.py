@@ -9,15 +9,17 @@ class UserReviewSerializer(serializers.ModelSerializer):
 
 
 class CarImageSerializer(serializers.ModelSerializer):
-   
+    image = serializers.ImageField(
+        max_length=None, use_url=True
+    )
     class Meta:
         model = CarImages
         fields = ('image',)
         
-    def get_photo_url(self, car):
+    def get_photo_url(self, obj):
         request = self.context.get('request')
-        car_image = car.photo.url
-        return request.build_absolute_uri(car_image)
+        photo_url = obj.image.url
+        return request.build_absolute_uri(photo_url)
 
 
 
@@ -48,8 +50,10 @@ class CarsSerializer(serializers.ModelSerializer):
     
 class SalesVehicleSerializer(serializers.ModelSerializer):
     images = serializers.SerializerMethodField()
+ 
     def get_images(self, car):
-       return CarImageSerializer(car.car_images.all(), many=True).data
+       image = car.car_images.all()
+       return  CarImageSerializer(instance=image, many=True,context=self.context).data 
     class Meta:
         model= Cars
         fields = '__all__'

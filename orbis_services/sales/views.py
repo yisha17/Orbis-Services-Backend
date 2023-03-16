@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import generics, permissions, authentication
 from rest_framework.permissions import AllowAny,IsAdminUser,IsAuthenticated
+from rest_framework.parsers import MultiPartParser, FormParser
 from .models import *
 from .serializer import *
 # Create your views here.
@@ -43,6 +44,7 @@ user_review_list = UserReviewList.as_view()
 class FullDetailAboutSalesCar(generics.RetrieveAPIView):
     queryset = Cars.objects.all()
     serializer_class = SalesVehicleSerializer
+    parser_classes = (MultiPartParser, FormParser)
     permission_classes = [AllowAny,]
     lookup_field = 'pk'
     
