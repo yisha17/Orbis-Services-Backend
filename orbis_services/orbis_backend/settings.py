@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = "users.CustomUser" 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -138,7 +139,8 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ACCESS_TOKEN_LIFETIME': timedelta(days=5),
 }
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

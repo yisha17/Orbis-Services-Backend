@@ -41,6 +41,7 @@ class Cars(models.Model):
     seating_capacity = models.CharField(max_length=200)
     number_of_door = models.IntegerField(null=True)
     payload = models.IntegerField(null=True)
+    car_price = models.IntegerField(null=False)
     # --------------engine-------------
     fuel_type = models.CharField(max_length=120, choices=FUEL)
     displacement = models.IntegerField(null=True)
@@ -52,15 +53,18 @@ class Cars(models.Model):
     number_of_gears = models.IntegerField(null=True)
     transmission = models.CharField(max_length=10)
     # --------------axle assemblies-------------
-    anti_lock_braking_system = models.BooleanField(default=False)
+    anti_lock_braking_system = models.CharField(max_length=100, null=True)
     servo_brakes = models.CharField(max_length=100, null=True)
     wheel_rim_type = models.CharField(max_length=100, null=True)
     spare_wheel = models.CharField(max_length= 200, null=True)
-    # --------------air condtioning/ heating-------------
-    air_constioning_type = models.CharField(max_length=100, null=True)
-    # --------------safety-------------
+    # --------------air conditioning/ heating-------------
+    air_conditioning_type = models.CharField(max_length=100, null=True)
+    # --------------upholesty-------------
     seats_upholesty = models.CharField(max_length=100, null=True)
     seat_trim = models.CharField(max_length=100, null=True)
+    # --------------safety-------------
+    safety_belt = models.CharField(max_length=100, null=True)
+    protection_element = models.CharField(max_length=100, null=True)
     # --------------locking/alarm-------------
     electromotor_door_locking = models.CharField(max_length=100, null=True)
     # --------------dimensions-------------
