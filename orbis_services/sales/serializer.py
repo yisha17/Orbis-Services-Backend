@@ -1,14 +1,16 @@
 from rest_framework import serializers
 from .models import Cars, UserReview, CarImages
 from rest_framework_serializer_extensions.serializers import SerializerExtensionsMixin
-from users.serializer import UserSerializer
+from users.serializer import UserReviewProfileSerializer
+
+
 class CarReviewSerializer(SerializerExtensionsMixin,serializers.ModelSerializer):
     class Meta:
         model = UserReview
         fields = ('review_title','review_description','likes','views','car',)
 
         expandable_fields = dict(
-            reviewer=UserSerializer,
+            reviewer= UserReviewProfileSerializer,
         )    
 
 

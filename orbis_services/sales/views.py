@@ -38,6 +38,7 @@ def get_user_review(request,car):
 class UserReviewList(SerializerExtensionsAPIViewMixin,generics.ListAPIView):
     queryset = UserReview.objects.all()
     serializer_class = CarReviewSerializer
+    permission_classes = [AllowAny,]
     lookup_field = 'car'
 car_review_list = UserReviewList.as_view()
 
