@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework import generics, permissions, authentication
 from rest_framework.permissions import AllowAny,IsAdminUser,IsAuthenticated
 from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework_serializer_extensions.views import SerializerExtensionsAPIViewMixin
 from .models import *
 from .serializer import *
 # Create your views here.
@@ -30,15 +31,15 @@ def get_user_review(request,car):
     except Cars.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'GET':
-        serializer =  UserReviewSerializer(review)
+        serializer =  CarReviewSerializer(review)
         print(serializer.data)
         return Response(serializer.data,status=status.HTTP_200_OK)  
       
-class UserReviewList(generics.ListAPIView):
+class UserReviewList(SerializerExtensionsAPIViewMixin,generics.ListAPIView):
     queryset = UserReview.objects.all()
-    serializer_class = UserReviewSerializer
+    serializer_class = CarReviewSerializer
     lookup_field = 'car'
-user_review_list = UserReviewList.as_view()
+car_review_list = UserReviewList.as_view()
 
 
 class FullDetailAboutSalesCar(generics.RetrieveAPIView):

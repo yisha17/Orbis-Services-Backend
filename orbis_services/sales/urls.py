@@ -5,6 +5,6 @@ from .views import *
 
 urlpatterns = [
     path('<int:pk>/',get_sales_vehicle_info),
-    path('review/<int:car>/',user_review_list),
+    path('review/<int:car>/',car_review_list),
     path('detail/<int:pk>/',car_detail),
 ]
