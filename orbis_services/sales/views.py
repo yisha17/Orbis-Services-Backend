@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -49,7 +48,6 @@ class FullDetailAboutSalesCar(generics.RetrieveAPIView):
     parser_classes = (MultiPartParser, FormParser)
     permission_classes = [AllowAny,]
     lookup_field = 'pk'
-    
     
 car_detail = FullDetailAboutSalesCar.as_view()
 
