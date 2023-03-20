@@ -42,6 +42,15 @@ class UserReviewList(SerializerExtensionsAPIViewMixin,generics.ListAPIView):
     lookup_field = 'car'
 car_review_list = UserReviewList.as_view()
 
+class CarListByBrand(generics.ListAPIView):
+    queryset = Cars.objects.all()
+    serializer_class = SalesVehicleSerializer
+    permission_classes = [AllowAny,]
+    lookup_field = 'car_brand'
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            car_brand=self.kwargs['car_brand'])
+car_list_view = CarListByBrand.as_view()   
 
 class FullDetailAboutSalesCar(generics.RetrieveAPIView):
     queryset = Cars.objects.all()
